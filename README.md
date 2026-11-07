@@ -1,7 +1,6 @@
 # Einlagern: was ist eine Abfahrtsschätzung wert? – Streamlit-Demo
 
-<!-- TODO nach dem Deploy: direkt hierher den Live-Link setzen (Leerzeile davor und danach):
-**[→ Demo live ausprobieren](https://sebastianhanisch-einlagern-schaetzung-umstauen-demo.streamlit.app/)** -->
+**[→ Demo live ausprobieren](https://sebastianhanisch-einlagern-schaetzung-umstauen-demo.streamlit.app/)**
 
 Zwölftes Stück der Konzepte-Reihe **„Umstauen: Untergrenze und Suche“** für die Website „Sebastian Hanisch – Operations Research und Machine Learning“. Bisher war die Reihenfolge der Abfahrt **bekannt**. Hier ist sie beim **Einlagern** nur **geschätzt**: Die Container kommen nacheinander an und müssen **sofort** auf einen Stapel; danach werden sie in der Reihenfolge der **wahren** Abfahrt abgerufen, und was über dem nächsten liegt, wird **umgelagert**. Die Demo misst, **wie viel der Lücke** zwischen dem **niedrigsten Stapel** (kein Wissen) und dem **vollen Wissen** die Schätzung schließt, **ab welchem Schätzfehler** sie nichts mehr nützt und **wie weit das volle Wissen von der Untergrenze** der besten Ablage entfernt ist.
 
