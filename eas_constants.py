@@ -44,7 +44,7 @@ PRESETS = {
 PRESET_HELP = {
     "Alltag (4 Stapel, Höhe 4, Schätzfehler 0,2)": "10 Container: Eine Rangabweichung von rund 20 % der Containerzahl schließt gut die Hälfte der Lücke zwischen „niedrigster Stapel“ und vollem Wissen.",
     "Volles Wissen (Schätzfehler 0)": "10 Container: Mit den wahren Abfahrtsnummern kostet das Einlagern nach engster Passung im Mittel gut eine halbe Umlagerung, der niedrigste Stapel rund vier.",
-    "Schätzung wertlos (Schätzfehler 4)": "10 Container: Bei einer Streuung von vier Containerzahlen ist die Schätzung nicht besser als der niedrigste Stapel (sie liegt darüber).",
+    "Schätzung wertlos (Schätzfehler 4)": "10 Container: Bei einer Streuung von vier Containerzahlen ist die Schätzung nicht nachweislich besser als der niedrigste Stapel (der Mittelwert liegt leicht darüber).",
     "Kleine Bucht mit Untergrenze (3 Stapel, 8 Container)": "8 Container: Die Untergrenze (beste Ablage) und das exakte Optimum beim Abruf werden live gerechnet.",
-    "Große Bucht (6 Stapel, Höhe 4)": "18 Container: Der Effekt der Schätzung bleibt bei größeren Buchten gleich groß; die Untergrenze wird hier nicht gerechnet.",
+    "Große Bucht (6 Stapel, Höhe 4)": "18 Container: Der Effekt der Schätzung bleibt in dieser Spannweite (8 bis 18 Container) ähnlich; die Untergrenze wird hier nicht gerechnet.",
 }

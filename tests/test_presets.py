@@ -35,7 +35,7 @@ def test_full_knowledge_preset_closes_the_whole_gap():
 def test_worthless_estimate_preset_is_worse_than_the_lowest_stack():
     s = _analyse("Schätzung wertlos (Schätzfehler 4)").stats
     assert s["tight"] == pytest.approx(4.31) and s["lowest"] == pytest.approx(4.02) and s["tight"] > s["lowest"] and round(s["closed"], 3) == -0.086
-    assert ev.verdict_sample(s, "x", 4.0) == ("warning", ev.verdict_sample(s, "x", 4.0)[1]) and ev.verdict_sample(s, "x", 4.0)[1].endswith("Sie ist schlechter als der niedrigste Stapel.")
+    assert ev.verdict_sample(s, "x", 4.0) == ("warning", ev.verdict_sample(s, "x", 4.0)[1]) and ev.verdict_sample(s, "x", 4.0)[1].endswith("Im Mittel ist sie schlechter als der niedrigste Stapel.")
 
 
 def test_small_bay_preset_has_the_bounds_and_the_exact_optimum():

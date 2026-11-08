@@ -65,7 +65,7 @@ def test_full_knowledge_preset_shows_the_success_verdict():
 def test_worthless_estimate_preset_shows_the_warning():
     at = _run("Schätzung wertlos (Schätzfehler 4)")
     assert _metrics(at)["Mit Schätzung"] == ("4,31", "σ = 4") and _metrics(at)["Geschlossene Lücke"][0] == "-9 %"
-    assert any(w.value.endswith("Sie ist schlechter als der niedrigste Stapel.") for w in at.warning)
+    assert any(w.value.endswith("Im Mittel ist sie schlechter als der niedrigste Stapel.") for w in at.warning)
 
 
 def test_large_bay_preset_has_no_lower_bound_line():

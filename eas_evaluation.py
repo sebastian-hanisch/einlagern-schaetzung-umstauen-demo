@@ -144,7 +144,7 @@ def verdict_sample(stats: dict, name: str, sigma: float) -> tuple[str, str]:
     if _le(C.CLOSED_HALF, c):
         return "info", text + " Sie trägt zum Teil."
     if c < 0:
-        return "warning", text + " Sie ist schlechter als der niedrigste Stapel."
+        return "warning", text + " Im Mittel ist sie schlechter als der niedrigste Stapel."
     return "warning", text + " Sie trägt kaum."
 
 
@@ -239,7 +239,7 @@ def verdict_kipp(stats: dict, name: str) -> tuple[str, str]:
     prev = max((sg for sg in C.SIGMA_OPTIONS if sg < k), default=None)
     where = f"zwischen {sigma_text(prev)} und {sigma_text(k)}" if prev is not None else f"schon bei {sigma_text(k)}"
     return "warning", (f"{name}: Der Kipppunkt liegt {where}: Dort kostet die Regel mit Schätzung ({dec(stats['tight'][sigma_key(k)])}) so viel wie oder mehr als der niedrigste Stapel "
-                       f"({dec(stats['lowest'])}).")
+                       f"({dec(stats['lowest'])}). Ab hier ist kein Vorteil mehr zu sehen; kleine Unterschiede liegen im Messrauschen.")
 
 
 def verdict_bound(stats: dict, name: str) -> tuple[str, str]:

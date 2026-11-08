@@ -19,7 +19,7 @@ def test_sample_verdict_three_states_and_numbers():
     kind, text = ev.verdict_sample(_s(4.0, 3.5, 1.0), "x", 0.5)
     assert kind == "warning" and text.endswith("Die Schätzung schließt 17 % der Lücke. Sie trägt kaum.")
     kind, text = ev.verdict_sample(_s(4.0, 4.3, 1.0), "x", 4.0)
-    assert kind == "warning" and text.endswith("Die Schätzung schließt -10 % der Lücke. Sie ist schlechter als der niedrigste Stapel.")
+    assert kind == "warning" and text.endswith("Die Schätzung schließt -10 % der Lücke. Im Mittel ist sie schlechter als der niedrigste Stapel.")
 
 
 def test_sample_verdict_thresholds_are_inclusive_and_float_safe():
@@ -58,7 +58,7 @@ def test_kipp_verdict_states_and_numbers():
     assert kind == "info" and text == ("3 × 4, 8 Container: Bis zum Schätzfehler 4 kostet die Regel mit Schätzung weniger als der niedrigste Stapel (4 Umlagerungen); "
                                        "einen Kipppunkt gibt es im untersuchten Bereich nicht.")
     kind, text = ev.verdict_kipp(_sig(3.0, tight_at={"3": 4.2}), "4 × 4, 10 Container")
-    assert kind == "warning" and text == ("4 × 4, 10 Container: Der Kipppunkt liegt zwischen 2 und 3: Dort kostet die Regel mit Schätzung (4,20) so viel wie oder mehr als der niedrigste Stapel (4).")
+    assert kind == "warning" and text == ("4 × 4, 10 Container: Der Kipppunkt liegt zwischen 2 und 3: Dort kostet die Regel mit Schätzung (4,20) so viel wie oder mehr als der niedrigste Stapel (4). Ab hier ist kein Vorteil mehr zu sehen; kleine Unterschiede liegen im Messrauschen.")
     kind, text = ev.verdict_kipp(_sig(0.0, tight_at={"0": 4.0}), "x")
     assert kind == "warning" and "schon bei 0" in text
     assert ev.verdict_kipp(_sig(0.05, tight_at={"0.05": 4.1}), "x")[1].count("zwischen 0 und 0,05") == 1

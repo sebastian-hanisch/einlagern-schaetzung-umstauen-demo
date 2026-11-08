@@ -3,7 +3,7 @@ Sebastian Hanisch - Operations Research und Machine Learning
 
 Stück 12 der Reihe „Umstauen: Untergrenze und Suche“. Container kommen nacheinander an und müssen sofort auf einen Stapel; ihre Abfahrt ist nur geschätzt. Danach werden sie in der Reihenfolge
 der wahren Abfahrt abgerufen, was darüber liegt, wird umgelagert. Die Demo misst, wie viel der Lücke zwischen „niedrigster Stapel“ (kein Wissen) und vollem Wissen die Schätzung schließt, ab
-welchem Schätzfehler sie nichts mehr nützt und wie weit das volle Wissen von der Untergrenze der besten Ablage entfernt ist.
+welchem Schätzfehler kein Vorteil mehr zu sehen ist und wie weit das volle Wissen von der Untergrenze der besten Ablage entfernt ist.
 
 Lauffähig mit: streamlit run app.py
 """
@@ -60,7 +60,7 @@ with st.container(key="kopf"):
     st.title("📦 Einlagern: was ist eine Abfahrtsschätzung wert?")
 st.markdown(
     """
-Bisher war die Reihenfolge der Abfahrt **bekannt**. Hier ist sie beim **Einlagern** nur **geschätzt**: Die Container kommen nacheinander an und müssen **sofort** auf einen Stapel; danach werden sie in der Reihenfolge der **wahren** Abfahrt abgerufen, und was über dem nächsten liegt, wird **umgelagert**. Die Demo misst, **wie viel der Lücke** zwischen dem **niedrigsten Stapel** (kein Wissen) und dem **vollen Wissen** die Schätzung schließt, **ab welchem Schätzfehler** sie nichts mehr nützt und **wie weit das volle Wissen von der Untergrenze** der besten Ablage entfernt ist.
+Bisher war die Reihenfolge der Abfahrt **bekannt**. Hier ist sie beim **Einlagern** nur **geschätzt**: Die Container kommen nacheinander an und müssen **sofort** auf einen Stapel; danach werden sie in der Reihenfolge der **wahren** Abfahrt abgerufen, und was über dem nächsten liegt, wird **umgelagert**. Die Demo misst, **wie viel der Lücke** zwischen dem **niedrigsten Stapel** (kein Wissen) und dem **vollen Wissen** die Schätzung schließt, **ab welchem Schätzfehler** kein Vorteil mehr zu sehen ist und **wie weit das volle Wissen von der Untergrenze** der besten Ablage entfernt ist.
 
 Die Fall-Demos [Stapelplanung](https://sebastianhanisch-stapelplanung-demo.streamlit.app/) (Block mit laufenden Ankünften und Abholungen, Kipppunkt des Schätzfehlers) und [Hofstellplatz](https://sebastianhanisch-hofstellplatz-demo.streamlit.app/) (vorausschauende Regel meist nicht besser als die naive) behandeln dieselbe Frage am Fall; ihre Zahlen stehen **dort**. Hier wird **vom Verfahren her** gemessen, mit der Untergrenze als Maßstab.
 
@@ -205,7 +205,7 @@ st.markdown(
 | **Alle Ankünfte vor allen Abrufen** | Die Container werden erst eingelagert, dann abgerufen. Laufende Ankünfte und Abholungen im Wechsel (wie in der Fall-Demo Stapelplanung) sind nicht abgebildet. | Fall-Demo Stapelplanung |
 | **Abruf nach der Regel „engste Passung“** | Beim Abruf wird nicht optimal umgelagert; nur in den zwei kleinen Zellen wird zusätzlich das exakte Optimum gerechnet (es liegt im Mittel höchstens 0,1 unter der Regel). | Stück 1, 5 bis 9 |
 | **Untergrenze nur bis 10 Container** | Die kleinste Blockerzahl über alle Platzierungen wird durch Aufzählen der Zustände gerechnet und wächst schnell; darüber wird sie nicht gerechnet. | – |
-| **Zufällige Ankunftsreihenfolge** | Die wahren Abfahrtsnummern sind zufällig verteilt; bei einer Ankunftsreihenfolge, die schon fast der Abfahrt gleicht, gewinnt jede Regel. | – |
+| **Zufällige Ankunftsreihenfolge** | Die wahren Abfahrtsnummern sind zufällig verteilt; bei einer Ankunftsreihenfolge, die schon fast der Abfahrt gleicht, dürften alle Regeln besser abschneiden (nicht gemessen). | – |
 | **Nur die Zahl der Umlagerungen** | Kranzeit, Fahrwege und Zeitfenster zählen nicht (Brücke zur Linie „Zielfunktion“). | Zielfunktionsdesign |
 """
 )

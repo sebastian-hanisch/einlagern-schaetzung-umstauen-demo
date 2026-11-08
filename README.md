@@ -2,13 +2,13 @@
 
 **[→ Demo live ausprobieren](https://sebastianhanisch-einlagern-schaetzung-umstauen-demo.streamlit.app/)**
 
-Zwölftes Stück der Konzepte-Reihe **„Umstauen: Untergrenze und Suche“** für die Website „Sebastian Hanisch – Operations Research und Machine Learning“. Bisher war die Reihenfolge der Abfahrt **bekannt**. Hier ist sie beim **Einlagern** nur **geschätzt**: Die Container kommen nacheinander an und müssen **sofort** auf einen Stapel; danach werden sie in der Reihenfolge der **wahren** Abfahrt abgerufen, und was über dem nächsten liegt, wird **umgelagert**. Die Demo misst, **wie viel der Lücke** zwischen dem **niedrigsten Stapel** (kein Wissen) und dem **vollen Wissen** die Schätzung schließt, **ab welchem Schätzfehler** sie nichts mehr nützt und **wie weit das volle Wissen von der Untergrenze** der besten Ablage entfernt ist.
+Zwölftes Stück der Konzepte-Reihe **„Umstauen: Untergrenze und Suche“** für die Website „Sebastian Hanisch – Operations Research und Machine Learning“. Bisher war die Reihenfolge der Abfahrt **bekannt**. Hier ist sie beim **Einlagern** nur **geschätzt**: Die Container kommen nacheinander an und müssen **sofort** auf einen Stapel; danach werden sie in der Reihenfolge der **wahren** Abfahrt abgerufen, und was über dem nächsten liegt, wird **umgelagert**. Die Demo misst, **wie viel der Lücke** zwischen dem **niedrigsten Stapel** (kein Wissen) und dem **vollen Wissen** die Schätzung schließt, **ab welchem Schätzfehler** kein Vorteil mehr zu sehen ist und **wie weit das volle Wissen von der Untergrenze** der besten Ablage entfernt ist.
 
 Die Fall-Demos [Stapelplanung](https://sebastianhanisch-stapelplanung-demo.streamlit.app/) (Block mit laufenden Ankünften und Abholungen, Kipppunkt des Schätzfehlers) und [Hofstellplatz](https://sebastianhanisch-hofstellplatz-demo.streamlit.app/) (vorausschauende Regel meist nicht besser als die naive) behandeln dieselbe Frage am Fall; **ihre Zahlen stehen dort und werden hier nicht wiederholt**. Hier wird **vom Verfahren her** gemessen, mit der Untergrenze als Maßstab.
 
 ## Warum dieses Problem
 
-Eine Abfahrtsschätzung zum Einlagern kostet Aufwand; die Frage ist, was sie bringt. Die Messung zeigt drei Dinge. **Erstens** trägt die Schätzung weit: Bei einem Schätzfehler von 20 % der Containerzahl (σ = 0,2) schließt sie 54 bis 63 % der Lücke zwischen „niedrigster Stapel“ und vollem Wissen, bei σ = 0,1 rund 75 bis 83 %, bei σ = 0,05 90 bis 96 %. **Zweitens** kippt sie: Bei σ = 2 ist nichts mehr zu holen (0 bis 8 %), bei σ = 3 ist die Schätzung in fünf von sechs Zellen **schlechter** als der niedrigste Stapel. **Drittens** ist fast die ganze Lücke **Nichtwissen**, nicht Platzmangel: Mit vollem Wissen liegt die einfache Regel nahe an der **Untergrenze der besten Ablage** (0,61 gegen 0,49 Umlagerungen bei 4 × 4 mit 10 Containern), der niedrigste Stapel dagegen rund 3,5 darüber.
+Eine Abfahrtsschätzung zum Einlagern kostet Aufwand; die Frage ist, was sie bringt. Die Messung zeigt drei Dinge. **Erstens** trägt die Schätzung weit: Bei einem Schätzfehler von 20 % der Containerzahl (σ = 0,2) schließt sie 54 bis 63 % der Lücke zwischen „niedrigster Stapel“ und vollem Wissen, bei σ = 0,1 rund 75 bis 83 %, bei σ = 0,05 90 bis 96 %. **Zweitens** kippt sie: Ab σ = 2 ist kein Vorteil gegenüber dem niedrigsten Stapel mehr nachweisbar (0 bis 8 % der Lücke); bei σ = 3 liegt die Schätzung im Mittel in fünf von sechs Zellen darüber, der Unterschied ist aber kleiner als das Messrauschen. **Drittens** ist in den zwei gerechneten kleinen Buchten (8 und 10 Container) fast die ganze Lücke **Nichtwissen**, nicht Platzmangel: Mit vollem Wissen liegt die einfache Regel nahe an der **Untergrenze der besten Ablage** (0,61 gegen 0,49 Umlagerungen bei 4 × 4 mit 10 Containern), der niedrigste Stapel dagegen rund 3,5 darüber.
 
 ## Modell
 
@@ -54,7 +54,7 @@ Alle Zahlen sind Messungen an festen Zufallsbuchten, nachgerechnet in `tests/tes
 | 6 × 4, 18 | 90 % | 75 % | 54 % | 27 % | 9 % | 1 % | −2 % | −4 % |
 | 4 × 5, 14 | 93 % | 79 % | 56 % | 26 % | 8 % | 2 % | −3 % | −5 % |
 
-Das Bild ist in allen Zellen gleich: Die geschlossene Lücke fällt von 100 % (σ = 0) über 90 bis 96 % (0,05) und rund 75 bis 83 % (0,1) auf gut die Hälfte (0,2), ein Viertel bis ein Drittel (0,5), unter 20 % (1) und 0 bis 8 % (2). Die Kosten wachsen in jeder Zelle mit jeder der 12 Stufen. Der niedrigste Stapel ist in jeder Zelle besser als der zufällige (4,05 gegen 4,21 bis 8,44 gegen 8,91). Der **Kipppunkt** (kleinster Schätzfehler der Stufen, bei dem die Schätzung nicht mehr besser ist als der niedrigste Stapel) liegt in fünf von sechs Zellen bei σ = 3, in 3 × 4 mit 8 Containern wird er bis σ = 4 nicht erreicht.
+Das Bild ist in allen Zellen gleich: Die geschlossene Lücke fällt von 100 % (σ = 0) über 90 bis 96 % (0,05) und rund 75 bis 83 % (0,1) auf gut die Hälfte (0,2), ein Viertel bis ein Drittel (0,5), unter 20 % (1) und 0 bis 8 % (2). Die Kosten wachsen in jeder Zelle mit jeder der 12 Stufen. Der niedrigste Stapel ist in jeder Zelle besser als der zufällige (4,05 gegen 4,21 bis 8,44 gegen 8,91). Der **Kipppunkt** (kleinster Schätzfehler der Stufen, bei dem die Schätzung nicht mehr besser ist als der niedrigste Stapel) liegt in fünf von sechs Zellen bei σ = 3, in 3 × 4 mit 8 Containern wird er bis σ = 4 nicht erreicht. Der Unterschied zum niedrigsten Stapel ist dort kleiner als das Messrauschen (gepaarte 95-%-Intervalle bei 300 Buchten: ±0,21 bis ±0,34 Umlagerungen).
 
 **B: Untergrenze der besten Ablage und exaktes Optimum** (200 Buchten je Zelle, Mittel)
 
@@ -63,15 +63,15 @@ Das Bild ist in allen Zellen gleich: Die geschlossene Lücke fällt von 100 % (�
 | 3 × 4, 8 Container | 0,90 | 1,23 | 4,08 | 4,19 | 2,30 / 3,65 / 4,01 | 2,28 / 3,59 / 3,91 |
 | 4 × 4, 10 Container | 0,49 | 0,61 | 4,05 | 4,63 | 2,10 / 3,72 / 4,29 | 2,10 / 3,69 / 4,26 |
 
-In allen 3 200 Paaren (2 Zellen · 200 Buchten · 8 Schätzfehler-Stufen) gilt Untergrenze ≤ exaktes Optimum ≤ Regel beim Abruf. Mit vollem Wissen liegt die Regel 0,34 (3 × 4) und 0,12 (4 × 4) über der Untergrenze (Differenzen aus den ungerundeten Mitteln), der niedrigste Stapel 3,18 und 3,56. Das exakte Optimum beim Abruf liegt höchstens 0,1 unter der Regel: Der Abruf nach „engster Passung“ ist hier fast optimal, der Verlust entsteht beim Einlagern.
+In allen 3 200 Paaren (2 Zellen · 200 Buchten · 8 Schätzfehler-Stufen) gilt Untergrenze ≤ exaktes Optimum ≤ Regel beim Abruf. Mit vollem Wissen liegt die Regel 0,34 (3 × 4) und 0,12 (4 × 4) über der Untergrenze (Differenzen aus den ungerundeten Mitteln), der niedrigste Stapel 3,18 und 3,56. Das exakte Optimum beim Abruf liegt höchstens 0,1 unter der Regel: In diesen zwei kleinen Zellen ist der Abruf nach „engster Passung“ fast optimal, der Verlust entsteht beim Einlagern.
 
 | Frage | Befund |
 |---|---|
 | **Wie viel nützt die Schätzung?** | Bei σ = 0,2 schließt sie 54 bis 63 % der Lücke zwischen niedrigstem Stapel und vollem Wissen, bei σ = 0,1 75 bis 83 %, bei σ = 0,05 90 bis 96 %. |
-| **Ab wann nützt sie nichts mehr?** | Bei σ = 2 nur noch 0 bis 8 %; bei σ = 3 ist sie in fünf von sechs Zellen schlechter als der niedrigste Stapel (Kipppunkt σ = 3); in der sechsten (3 × 4, 8 Container) bis σ = 4 nicht. |
-| **Wie weit ist das volle Wissen von der Untergrenze?** | Nahe: 0,34 und 0,12 Umlagerungen darüber. Der niedrigste Stapel liegt 3,2 bis 3,6 darüber: **Fast die ganze Lücke ist Nichtwissen.** |
-| **Hilft ein besserer Abruf?** | Kaum: Das exakte Optimum beim Abruf liegt höchstens 0,1 unter der Regel. |
-| **Wächst der Effekt mit der Bucht?** | Nein: Die geschlossene Lücke bei σ = 0,2 liegt von 8 bis 18 Containern zwischen 54 und 63 %. Die absoluten Kosten wachsen mit der Containerzahl. |
+| **Ab wann ist kein Vorteil mehr zu sehen?** | Bei σ = 2 nur noch 0 bis 8 %; bei σ = 3 liegt sie im Mittel in fünf von sechs Zellen über dem niedrigsten Stapel (Kipppunkt σ = 3; der Unterschied ist kleiner als das Messrauschen); in der sechsten (3 × 4, 8 Container) bis σ = 4 nicht. |
+| **Wie weit ist das volle Wissen von der Untergrenze?** | Nahe: 0,34 und 0,12 Umlagerungen darüber. Der niedrigste Stapel liegt 3,2 bis 3,6 darüber: **In den zwei gerechneten kleinen Buchten (8 und 10 Container) ist fast die ganze Lücke Nichtwissen.** |
+| **Hilft ein besserer Abruf?** | Kaum: In den zwei kleinen Zellen liegt das exakte Optimum beim Abruf höchstens 0,1 unter der Regel. |
+| **Wächst der Effekt mit der Bucht?** | In dieser Spannweite (8 bis 18 Container) bleibt er ähnlich: Die geschlossene Lücke bei σ = 0,2 liegt zwischen 54 und 63 %, leicht fallend. Die absoluten Kosten wachsen mit der Containerzahl. |
 
 **Presets** (Eigenschaften in `tests/test_presets.py`): „Alltag“ (4 × 4, 10 Container, σ = 0,2: 55 % der Lücke), „Volles Wissen“ (σ = 0: 0,65 gegen 4,02 des niedrigsten Stapels), „Schätzung wertlos“ (σ = 4: 4,31 gegen 4,02), „Kleine Bucht mit Untergrenze“ (3 × 4, 8 Container, σ = 0,1: Untergrenze 0,85, 76 %), „Große Bucht“ (6 × 4, 18 Container: 54 %).
 
@@ -83,7 +83,7 @@ In allen 3 200 Paaren (2 Zellen · 200 Buchten · 8 Schätzfehler-Stufen) gilt U
 - **Alle Ankünfte vor allen Abrufen.** Laufende Ankünfte und Abholungen im Wechsel (Fall-Demo Stapelplanung) sind nicht abgebildet; der Kipppunkt hier (σ ≈ 3) ist **nicht** der der Fall-Demo (andere Familie, anderes Maß, kein Vergleich).
 - **Abruf nach der Regel „engste Passung“;** das exakte Optimum nur in den zwei kleinen Zellen (dort liegt es höchstens 0,1 darunter).
 - **Untergrenze nur bis 10 Container:** Die Aufzählung der Zustände wächst schnell.
-- **Zufällige Ankunftsreihenfolge:** Kommen die Container schon fast in der Reihenfolge der Abfahrt an, gewinnt jede Regel.
+- **Zufällige Ankunftsreihenfolge:** Kommen die Container schon fast in der Reihenfolge der Abfahrt an, dürften alle Regeln besser abschneiden (nicht gemessen).
 - **Nur die Zahl der Umlagerungen** (keine Kranzeit, keine Fahrwege; Brücke zur Linie „Zielfunktion“).
 - **Kleine Stichproben:** 300 und 200 Buchten je Zelle; Differenzen von 0,02 bis 0,05 zwischen Stufen sind Rauschen.
 
@@ -139,7 +139,7 @@ pip install -r requirements-dev.txt
 pytest tests/ -v
 ```
 
-91 Tests, rund vier Minuten (die App-Tests rechnen die Stichproben live).
+91 Tests, rund fünf Minuten auf diesem Rechner gemessen, je nach Last (die App-Tests rechnen die Stichproben live).
 
 Gebaut mit Streamlit und Plotly.
 
